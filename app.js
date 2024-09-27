@@ -17,21 +17,21 @@
 let operator = "";
 let previousValue = "";
 let currentValue = "";
-let values = "";
+let inputValues = "";
 let expression = document.querySelector(".num-op");
 
 // get the operators
 const getOperator = function(ope) {
     operator = ope;
-    currentValue = values;
-    values = "";
+    previousValue = inputValues;
+    inputValues = "";
     expression.textContent = `${previousValue} ${operator}`;
 }
 
 // calculate the final result
 const calculate = function() {
     previousValue = parseInt(previousValue)
-    currentValue = parseInt(currentValue)
+    currentValue = parseInt(inputValues)
     let result;
     switch(operator) {
         case "+":
@@ -50,8 +50,8 @@ const calculate = function() {
             return;
     }
     userInput.textContent = result;
-    previousValue = "";
-    values = "";
+    previousValue = result.toString();
+    inputValues = "";
 }
 
 
@@ -59,9 +59,9 @@ let userInput = document.getElementById('user-input');
 
 // display the numbers
 const displayNumbers = function(nums) {
-    values += nums;
-    previousValue = values;
-    userInput.textContent = previousValue;
+    inputValues += nums;
+    // previousValue = inputValues;
+    userInput.textContent = inputValues;
 }
 
 const numberBtns = document.querySelectorAll(".numbers");
@@ -93,5 +93,5 @@ clear.addEventListener("click", () => {
     operator = "";
     expression.textContent = "";
     userInput.textContent = "";
-    
+    inputValues = "";    
 })
